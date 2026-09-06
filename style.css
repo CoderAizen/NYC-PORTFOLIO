@@ -41,23 +41,29 @@ html {
 body {
   font-family: var(--font-sans);
   background-color: var(--bg);
-  background-image: url('web-bg.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
   color: var(--text);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content: '';
+/* Fixed background layer — works on ALL mobile browsers.
+   background-attachment:fixed is broken on iOS and Android. */
+.bg-layer {
   position: fixed;
   inset: 0;
-  background: rgba(13, 15, 20, 0.78);
   z-index: 0;
+  background-image: url('web-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   pointer-events: none;
+}
+
+.bg-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 15, 20, 0.78);
 }
 
 main, .nav-wrapper, footer {
@@ -824,10 +830,10 @@ ul {
   }
 
   .speech-wrap {
-    top: auto;
-    bottom: 6rem;
+    top: 68%;
+    bottom: auto;
     right: 1rem;
-    width: 180px;
+    width: 170px;
   }
 
   .speech-bubble {
