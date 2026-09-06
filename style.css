@@ -797,6 +797,15 @@ ul {
 /* responsive */
 @media (max-width: 700px) {
 
+  :root {
+    --section-gap: 3.5rem;
+    --card-pad: 1.25rem;
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+
   .hero {
     background-attachment: scroll;
     padding: 6rem 1.25rem 3rem;
@@ -807,6 +816,7 @@ ul {
   }
 
   .speech-wrap {
+    top: auto;
     bottom: 3rem;
     right: 1.25rem;
   }
@@ -816,8 +826,17 @@ ul {
     max-width: 200px;
   }
 
+  .nav {
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+
   .nav-links {
-    display: none;  /* keep it clean on mobile */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
   }
 
   .projects-grid {
