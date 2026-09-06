@@ -802,28 +802,62 @@ ul {
     --card-pad: 1.25rem;
   }
 
+  /* Fix body background on mobile — 'fixed' breaks on iOS/Android */
   body {
     background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* body::before is position:fixed — on Android it can vanish while scrolling.
+     Switch to a persistent dark tint via a regular background layer instead. */
+  body::before {
+    position: absolute;
+    height: 100%;
+    min-height: 100%;
   }
 
   .hero {
     background-attachment: scroll;
-    padding: 6rem 1.25rem 3rem;
+    /* Show right-bottom of image so the cat is visible */
+    background-position: right bottom;
+    background-size: cover;
+    min-height: 100svh;
+    padding: 7rem 1.25rem 14rem 1.25rem; /* extra bottom pad so cat area shows */
+    align-items: flex-start;
+  }
+
+  /* Darken left side more so text is readable; keep right side lighter so cat shows */
+  .hero-bg-overlay {
+    background: linear-gradient(
+      100deg,
+      rgba(13, 15, 20, 0.90) 0%,
+      rgba(13, 15, 20, 0.65) 55%,
+      rgba(13, 15, 20, 0.20) 100%
+    );
   }
 
   .hero-name {
     font-size: clamp(2.2rem, 10vw, 3rem);
   }
 
+  /* Speech bubble — position above the cat at bottom-right */
   .speech-wrap {
     top: auto;
-    bottom: 3rem;
-    right: 1.25rem;
+    bottom: 6rem;
+    right: 1rem;
+    width: 180px;
   }
 
   .speech-bubble {
-    font-size: 0.68rem;
-    max-width: 200px;
+    font-size: 0.66rem;
+    width: 100%;
+  }
+
+  /* tail points down toward the cat below */
+  .speech-bubble::after {
+    bottom: -12px;
+    left: 50%;
   }
 
   .nav {
@@ -873,3 +907,4 @@ ul {
     justify-content: center;
   }
 }
+
